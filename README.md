@@ -1,3 +1,3 @@
 # DogChallenge
 
-Test tecnico para MobDev
+Test técnico para MobDev
