@@ -8,22 +8,23 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import android.widget.Toast
-import com.mobdev.dogceochallenge.ImagesActivity
+import com.mobdev.dogceochallenge.ui.ImagesActivity
 import com.mobdev.dogceochallenge.R
-import com.mobdev.dogceochallenge.modelo.Dogs
+import com.mobdev.dogceochallenge.model.Dogs
 
-class AdapterDog(private val context: Context, private val dogsList: List<Dogs>) : BaseAdapter() {
+class AdapterDog(private val context: Context, private val dogsList: MutableList<Dogs?>) : BaseAdapter() {
     override fun getCount(): Int {
         return dogsList.size
     }
 
     override fun getItem(pos: Int): Any {
-        return dogsList[pos]
+        return dogsList[pos]!!
     }
 
     override fun getItemId(pos: Int): Long {
         return pos.toLong()
     }
+
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var view = convertView
@@ -31,8 +32,9 @@ class AdapterDog(private val context: Context, private val dogsList: List<Dogs>)
             view = LayoutInflater.from(context).inflate(R.layout.dogs, parent, false)
         }
         val textName = view!!.findViewById<TextView>(R.id.textName)
+
         val dogs = dogsList[position]
-        textName.text = dogs.raza
+        textName.text = dogs!!.raza
         view.setOnClickListener {
             Toast.makeText(context, dogs.raza, Toast.LENGTH_SHORT).show()
             val contacts = arrayOf(
@@ -43,8 +45,10 @@ class AdapterDog(private val context: Context, private val dogsList: List<Dogs>)
         return view
     }
 
+
     private fun openNextActivity(data: Array<String?>) {
         val nextActivity = Intent(context, ImagesActivity::class.java)
+        Toast.makeText(context, data[0], Toast.LENGTH_SHORT).show()
         nextActivity.putExtra("NAME", data[0])
         context.startActivity(nextActivity)
     }

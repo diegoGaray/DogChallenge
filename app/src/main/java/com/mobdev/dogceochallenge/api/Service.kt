@@ -6,8 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 interface Service {
-    @get:GET("api/breeds/list")
-    val dogs: Call<JsonObject>
+    @GET
+    fun getDogs(@Url url: String?): Call<JsonObject>
 
     @GET
     fun getImages(@Url url: String?): Call<JsonObject>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DogCeoChallenge</string>
+    <string name="razas_de_perros">🐕 Razas de perros:</string>
+    <string name="name">🐕 Name</string>
 </resources>

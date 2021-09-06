@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import com.mobdev.dogceochallenge.R
-import com.mobdev.dogceochallenge.modelo.Images
+import com.mobdev.dogceochallenge.model.Images
 import com.squareup.picasso.Picasso
 
-class AdapterImage(private val context: Context, private val imagesList: List<Images>) :
+class AdapterImage(private val context: Context, private val imagesList: MutableList<Images?>) :
     BaseAdapter() {
     override fun getCount(): Int {
         return imagesList.size
     }
 
     override fun getItem(pos: Int): Any {
-        return imagesList[pos]
+        return imagesList[pos]!!
     }
 
     override fun getItemId(pos: Int): Long {
@@ -31,7 +31,7 @@ class AdapterImage(private val context: Context, private val imagesList: List<Im
         }
         val img = view!!.findViewById<ImageView>(R.id.imageView)
         val thisContact = imagesList[position]
-        Picasso.get().load(thisContact.image).into(img)
+        Picasso.get().load(thisContact!!.image).into(img)
         return view
     }
 }
